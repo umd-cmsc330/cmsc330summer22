@@ -29,7 +29,7 @@ The following maze is size 4 by 4, with integer indices 0 to 3 in x left to righ
 
 ![maze image](images/maze.png)
 
-Walls can have costs, or weights, to transverse, and the cost of a path is the sum of the weights along the path. In the case below the path cost is 5.7. Walls can be asymmetric, so the cost through a wall is different in one direction than another - this means that the cost of a path is directional. The cost from S to E may not be the same as E to S, although the path distance is symmetric between start and finish. In a valid maze, a wall is either open or closed from both sides.
+Walls can have costs, or weights, to transverse, and the cost of a path is the sum of the weights along the path. In the case below the path cost is 4.7. Walls can be asymmetric, so the cost through a wall is different in one direction than another - this means that the cost of a path is directional. The cost from S to E may not be the same as E to S, although the path distance is symmetric between start and finish. In a valid maze, a wall is either open or closed from both sides.
 
 ![path image](images/path.png)
 
