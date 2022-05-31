@@ -64,7 +64,7 @@ These instructions assume you have a Debian-based system (e.g. Ubuntu).  If you 
 
 1. Firstly, install the basic dependencies:
     - Run `sudo apt update && sudo apt upgrade -y` to update your local package listing
-    - Run `sudo apt install -y ruby ruby-dev sqlite3 libsqlite3-dev ocaml opam graphviz libssl-dev pkg-config`
+    - Run `sudo apt install -y ruby ruby-dev sqlite3 libsqlite3-dev ocaml opam graphviz libssl-dev pkg-config cargo`
 2. Jump to [common steps](#common-steps-all-oss)
 
 ### macOS
