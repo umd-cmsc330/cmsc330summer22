@@ -294,13 +294,7 @@ Project Submission
 ------------------
 You should submit a file `maze.rb` containing your solution. You may submit other files, but they will be ignored during grading. We will run your solution as MiniTest test units, just as in the provided public test file.
 
-Be sure to follow the project description exactly! Your solution will be graded automatically, so any deviation from the specification will result in lost points.
-
-You can submit your `maze.rb` file directly Gradescope.
-
-Use the submit dialog to submit your `maze.rb` file directly. Select your file using the "Browse" button, then press the "Submit project!" button. You **do not** need to put it in a zip file.
-
-No matter how you choose to submit your project, make sure that your submission is received by checking the results after submitting.
+Submit this file by running `gradescope-submit` in the project folder. Alternatively, you can manually submit the file to Gradescope by uploading the p0.report file to the appropriate assignment.
 
 Academic Integrity
 ------------------

@@ -6,4 +6,4 @@ term = "Summer 2022"
 [assignment]
 id = 2086043
 name = "Project 1 - Maze Solver"
-files = [ "p1.report" ]
+files = [ "maze.rb" ]
