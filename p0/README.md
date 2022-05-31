@@ -1,6 +1,6 @@
 # Project 0: Setup
 
-Due: June 10, 2022 at 11:59 PM
+Due: June 7, 2022 at 11:59 PM
 
 This project is simply to get your system ready.  You will "submit" this project for a grade.  The good-faith attempt (GFA) rule **does not apply** to this project.
 
