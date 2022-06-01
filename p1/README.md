@@ -136,7 +136,7 @@ The bridges are:
 
 row 0, columns 0,1,2; row 1, columns 1,2,3; row 2 columns 0,1,2; column 1, row 0,1,2; column 2, row 0,1,2; and column 2, row 1,2,3. In (x,y) coordinates, the bridges are (0,1),(1,1),(2,1); (1,1),(2,1),(3,1); (0,2),(1,2)(2,2); (1,0),(1,1),(1,2); (2,0),(2,1),(2,2); (2,1),(2,2),(2,3) respectively.
 
-Finally, if we invoke your script with the `sortcells` mode, your script should return an array of strings where each string is one line of cells sorted by the number of openings. For example:
+Finally, if we invoke your script with the `sortcells` mode, your script should return an array of strings where each string is one line of cells sorted by the number of openings. For example it would look like this in the console:
 ```
 % ruby runner.rb sortcells inputs/maze1
 0,(1,3),(3,0)
@@ -145,6 +145,13 @@ Finally, if we invoke your script with the `sortcells` mode, your script should 
 3,(1,2),(2,2)
 4,(1,1),(2,1)
 ```
+
+and your script would be returning:
+```
+["0,(1,3),(3,0)", "1,(0,0),(0,3),(3,2),(3,3)", "2,(0,1),(0,2),(1,0),(2,0),(2,3),(3,1)", "3,(1,2),(2,2)", "4,(1,1),(2,1)"]
+```
+
+
 The output indicates that two cells (1,3) and (3,0) have no openings, four cells have one opening, etc. Cells with the same number of openings are sorted by their column, then row. This means sort by x-coordinate first, then sort by y-coordinate (i.e. lexicographic order).
 
 If a maze were to have no cells with a particular number of openings then that line should be ommited entirely, for example:
