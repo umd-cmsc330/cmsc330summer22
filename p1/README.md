@@ -136,7 +136,7 @@ The bridges are:
 
 row 0, columns 0,1,2; row 1, columns 1,2,3; row 2 columns 0,1,2; column 1, row 0,1,2; column 2, row 0,1,2; and column 2, row 1,2,3. In (x,y) coordinates, the bridges are (0,1),(1,1),(2,1); (1,1),(2,1),(3,1); (0,2),(1,2)(2,2); (1,0),(1,1),(1,2); (2,0),(2,1),(2,2); (2,1),(2,2),(2,3) respectively.
 
-Finally, if we invoke your script with the `sortcells` mode, your script should print the cells sorted by the number of openings. For example:
+Finally, if we invoke your script with the `sortcells` mode, your script should return an array of strings where each string is one line of cells sorted by the number of openings. For example:
 ```
 % ruby runner.rb sortcells inputs/maze1
 0,(1,3),(3,0)
@@ -146,6 +146,17 @@ Finally, if we invoke your script with the `sortcells` mode, your script should 
 4,(1,1),(2,1)
 ```
 The output indicates that two cells (1,3) and (3,0) have no openings, four cells have one opening, etc. Cells with the same number of openings are sorted by their column, then row. This means sort by x-coordinate first, then sort by y-coordinate (i.e. lexicographic order).
+
+If a maze were to have no cells with a particular number of openings then that line should be ommited entirely, for example:
+
+```
+1,(0,0),(0,3),(1,3),(3,0)(3,2),(3,3)
+2,(0,1),(0,2),(1,0),(2,0),(2,3),(3,1)
+3,(1,2),(2,2)
+4,(1,1),(2,1)
+```
+
+This is what it would look like if the maze had no cells with zero openings
 
 ## Part 2: Process & Sort Paths By Cost
 
@@ -212,7 +223,7 @@ The textual specification of mazes makes them difficult to understand. For this 
 - Left/right walls will be represented by a pipe character "|", up/down walls will be represented by a dash "-", and wall junctions will be represented with a plus "+".
 - If the maze file contains paths, print asterics in the cells on the shortest (as defined in Part 2 above) path. If the shortest path includes the start cell or end cell, print capital letter "S" or "E" instead of "s" or "e".
 
-Your program will print a maze in this format when executed with the `print` command.
+Your program will return a string displaying a maze in this format when executed with the `print` command.
 
 Here is an example maze that starts at (0,0) and ends at (3,3):
 ```
@@ -256,7 +267,7 @@ Note: You are given a function that parses and prints a simple maze file. You wi
 
 Next, you need to analyze all the openings in a maze to determine the *distance* of all cells reachable from the start of the maze. As said earlier in this readme, we define distance between two cells a and b to be the number of up/down/left/right cell openings that are passed through when traveling from a to b. If there are multiple paths from a to b, the path with the shortest distance is the distance between a and b. The distance of the start cell from itself is always 0. If there is no valid path from a to b (i.e. b is not reachable from a) then the distance from a to b is undefined.
 
-Once you have calculated the distance for all cells reachable from the start cell, print out the results in order of increasing distance. On each line, print out the distance d, followed by all cells reachable from the start cell for that distance d. Cells should be printed as (x,y) coordinates in lexicographic order (as defined by `sortcells` in **Part 2**), separated by commas. Note that the first line will always be distance 0, followed by the location of the starting point of the maze.
+Once you have calculated the distance for all cells reachable from the start cell, return a string with the results in order of increasing distance. On each line, put the distance d, followed by all cells reachable from the start cell for that distance d. Cells should be displayed as (x,y) coordinates in lexicographic order (as defined by `sortcells` in **Part 2**), separated by commas. Note that the first line will always be distance 0, followed by the location of the starting point of the maze.
 ```text
 % ruby runner.rb distance inputs/maze2
 0,(0,3)
