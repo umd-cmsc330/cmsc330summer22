@@ -6,4 +6,4 @@ term = "Summer 2022"
 [assignment]
 id = 2088855
 name = "Discussion 1"
-files = [ "warmup.rb" ]
+files = [ "src/warmup.rb" ]
