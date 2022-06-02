@@ -1,5 +1,5 @@
 
-# Project 1a: Ruby Warmup
+# Discussion 1: Ruby
 
 
 Due: Thursday, June 2nd 11:59pm (**No Late Submissions**)
