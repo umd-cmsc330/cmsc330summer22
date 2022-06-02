@@ -104,6 +104,16 @@ These instructions assume you have a Debian-based system (e.g. Ubuntu).  If you 
 6. Clone this repository to your local filesystem.
     - `mkdir -p ~/Documents && cd ~/Documents`
     - `git clone https://github.com/umd-cmsc330/cmsc330summer22`
+7. VS Code
+    - [Windows](https://code.visualstudio.com/docs/remote/wsl)
+    - [Mac](https://code.visualstudio.com/docs/setup/mac) (This link is mostly uneccesary)
+    - [Linux (**NOT WSL**)](https://code.visualstudio.com/docs/setup/linux)
+    - Ruby Support. Yes, all three of these.
+      - [https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby)
+      - [https://marketplace.visualstudio.com/items?itemName=castwide.solargraph](https://marketplace.visualstudio.com/items?itemName=castwide.solargraph). You will also need to `gem install solargraph` (`sudo gem ...` on linux, including wsl).
+      - [https://marketplace.visualstudio.com/items?itemName=wingrunr21.vscode-ruby](https://marketplace.visualstudio.com/items?itemName=wingrunr21.vscode-ruby)
+    - [Ocaml Support](https://marketplace.visualstudio.com/items?itemName=ocamllabs.ocaml-platform). You will also need to `opam install ocaml-lsp-server`
+    - [Rust](https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer)
 
 ## Verifying Setup
 
