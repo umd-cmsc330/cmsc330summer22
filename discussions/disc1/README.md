@@ -2,8 +2,6 @@
 # Project 1a: Ruby Warmup
 
 
-Due: February 2, 2021 at 11:59 PM (late February 3, *10% penalty*). **Note the deadline: just over one week**
-
 Due: Thursday, June 2nd 11:59pm (**No Late Submissions**)
 
 
