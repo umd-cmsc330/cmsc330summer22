@@ -1,4 +1,14 @@
 [course]
+<<<<<<< HEAD
+id = 358171
+name = "CMSC330"
+term = "Spring 2022"
+
+[assignment]
+id = 1802991
+name = "Project 1a - Ruby Warmup"
+files = [ "src/warmup.rb", "src/phonebook.rb" ]
+=======
 id = 399941
 name = "CMSC330"
 term = "Summer 2022"
@@ -6,4 +16,5 @@ term = "Summer 2022"
 [assignment]
 id = 2088855
 name = "Discussion 1"
-files = [ "src/warmup.rb" ]
+files = [ "warmup.rb" ]
+>>>>>>> f7b78bcd382277c443aa9e1192df2d088ff9419a
