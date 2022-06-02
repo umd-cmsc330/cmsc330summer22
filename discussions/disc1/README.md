@@ -14,7 +14,7 @@ Points: 96 public, 4 semipublic
 
 ## Before You Start
 
-**If you have not yet completed [project 0](../project0), you should do so before starting this project.**  At the very least, you should have everything related to Ruby installed correctly.  If you have any trouble with installation, check Piazza (or create a post if you don't find your problem there), or come to office hours to get help from a TA.
+**If you have not yet completed [project 0](https://github.com/umd-cmsc330/cmsc330spring22/tree/main/project0), you should do so before starting this project.**  At the very least, you should have everything related to Ruby installed correctly.  If you have any trouble with installation, check Piazza (or create a post if you don't find your problem there), or come to office hours to get help from a TA.
 
 ## Before You Start
 
