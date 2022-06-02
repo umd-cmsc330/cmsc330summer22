@@ -1,23 +1,20 @@
-def fib(n)
-    raise Exception, "Not Implemented"
-end
+class PhoneBook
+    def initialize
+    end
 
-def isPalindrome(n)
-    raise Exception, "Not Implemented"
-end
+    def add(name, number, is_listed)
+        raise Exception, "Not implemented"
+    end
 
-def nthmax(n, a)
-    raise Exception, "Not Implemented"
-end
+    def lookup(name)
+        raise Exception, "Not implemented"
+    end
 
-def freq(s)
-    raise Exception, "Not Implemented"
-end
+    def lookupByNum(number)
+        raise Exception, "Not implemented"
+    end
 
-def zipHash(arr1, arr2)
-    raise Exception, "Not Implemented"
-end
-
-def hashToArray(hash)
-    raise Exception, "Not Implemented"
+    def namesByAc(areacode)
+        raise Exception, "Not implemented"
+    end
 end
