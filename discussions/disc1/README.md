@@ -1,24 +1,21 @@
+
 # Project 1a: Ruby Warmup
 
-<<<<<<< HEAD
+
 Due: February 2, 2021 at 11:59 PM (late February 3, *10% penalty*). **Note the deadline: just over one week**
-=======
+
 Due: Thursday, June 2nd 11:59pm (**No Late Submissions**)
->>>>>>> f7b78bcd382277c443aa9e1192df2d088ff9419a
+
 
 Points: 96 public, 4 semipublic
 
-<<<<<<< HEAD
+
 **This is an individual assignment. You must work on this project alone.**
 
 ## Before You Start
 
-**If you have not yet completed [project 0](../project0), you should do so before starting this project.**  At the very least, you should have everything related to Ruby installed correctly.  If you have any trouble with installation, check Piazza (or create a post if you don't find your problem there), or come to office hours to get help from a TA.
-=======
-## Before You Start
-
 **If you have not yet completed project 0, you should do so before starting this discussion.  Ask your discussion leader for help if needed.**
->>>>>>> f7b78bcd382277c443aa9e1192df2d088ff9419a
+
 
 ## Introduction
 This project aims to give you some experience with basic Ruby functionality, including using basic data types (integers, strings), collections (arrays and hashes), and classes. You will also become familiar with Ruby's basic control constructs for looping and conditional execution, and how to run Ruby unit tests.
@@ -27,11 +24,11 @@ This project aims to give you some experience with basic Ruby functionality, inc
 You should have cloned the repository in project 0.  To download new projects (such as this one), go to the cloned repo in your terminal and run `git pull`.  This will download the files for this project and update your cloned repository.
 
 ## Submitting
-<<<<<<< HEAD
+
 You will submit this the same way you submitted project 0: by running `gradescope-submit` in the `project1a` folder.  If you are unable to get this to work, you can just submit both files in the src/ directory manually to the assignment on Gradescope.
-=======
+
 You will submit this the same way you will submit all your other projects: by running `gradescope-submit` in your current working folder.  If you are unable to get this to work, you can just submit `warmup.rb` manually to the assignment on Gradescope.
->>>>>>> f7b78bcd382277c443aa9e1192df2d088ff9419a
+
 
 ## A Note on Types
 Ruby has no built-in way to restrict the types passed to methods. As such, all method types specified in this document are the only ones you need to handle. You may assume that no arguments will be passed outside of the types we specify, and your program may do anything in cases where improperly typed arguments are passed. This is undefined behavior for this program and **will not be tested**.
@@ -147,32 +144,14 @@ Bob, (745)-231-3486
 You can skip over any invalid lines. 
 You can use any data structure to implement the PhoneBook.
 
-<<<<<<< HEAD
 - **Type**: `(String, String, Bool) -> Bool`
 - **Assumptions**: No phone number will start with 0.
 - **Examples**:
-  ```ruby
-  @phonebook = PhoneBook.new
-  @phonebook.add("John", "110-192-1862", false) == true
-  @phonebook.add("Jane", "220-134-1312", false) == true
-  @phonebook.add("John", "110-192-1862", false) == false
-  @phonebook.add("Ravi", "110", true) == false
-  ```
-  
-  Here is another example:
-  
-  ```ruby
-  @phonebook2 = PhoneBook.new
-  @phonebook2.add("Alice", "012-345-6789", false) == true
-  @phonebook2.add("Bob", "012-345-6789", false) == true
-  @phonebook2.add("Eve", "012-345-6789", true) == true
-  @phonebook2.add("Rob", "012-345-6789, true) == false
-  @phonebook2.add("Johnny B. Good", "012-345-6789, false) == true
-  ```
-=======
+
+
 #### `initialize(filename)`
 - **Description**: This is the constructor. You should initialize the fields that you think your class needs for successful evaluation of the remaining methods.  Then you need to read the file and store the needed values into your data structure.
->>>>>>> f7b78bcd382277c443aa9e1192df2d088ff9419a
+
 
 #### `lookup(name)`
 - **Description**: Looks up `name` in the `PhoneBook` and returns the corresponding phone number in the format `NNN-NNN-NNNN`. Otherwise, return `nil`.
@@ -207,22 +186,8 @@ You can use any data structure to implement the PhoneBook.
 - **Type**: `(String) -> Array`
 - **Examples**:
   ```ruby
-<<<<<<< HEAD
-  @phonebook = PhoneBook.new
-  @phonebook.add("John", "110-192-1862", false) == true
-  @phonebook.add("Jane", "220-134-1312", true) == true
-  @phonebook.add("Jack", "114-192-1862", false) == true
-  @phonebook.add("Jessie", "110-124-1131", true) == true
-  # Note that Jessie's number here is a little different than in the other examples!
-
-  @phonebook.namesByAc("110") == ["John", "Jessie"]
-  @phonebook.namesByAc("114") == ["Jack"]
-  @phonebook.namesByAc("111") == []
-=======
   @phonebook = PhoneBook.new(filename)
 
   @phonebook.namesByAc("111") == ["John","Leo"]
   @phonebook.namesByAc("123") == ["Sally"]
   @phonebook.namesByAc("222") == []
->>>>>>> f7b78bcd382277c443aa9e1192df2d088ff9419a
-  ```
