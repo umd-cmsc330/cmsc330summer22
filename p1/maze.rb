@@ -48,8 +48,22 @@ def main(command, fileName)
 
   # perform command
   case command
+  when "open"
+    fail "unimplemented"
+  when "parse"
+    parse(maze_file)
   when "print"
     read_and_print_simple_file(maze_file)
+  when "distance"
+    fail "unimplemented"
+  when "paths"
+    fail "unimplemented"
+  when "solve"
+    fail "unimplemented"
+  when "bridge"
+    fail "unimplemented"
+  when "sortcells"
+    fail "unimplemented"
   else
     fail "Invalid command"
   end
