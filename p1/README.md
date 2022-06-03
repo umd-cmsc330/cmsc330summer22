@@ -35,7 +35,7 @@ The following maze is size 4 by 4, with integer indices 0 to 3 in x left to righ
 
 ![maze image](images/maze.png)
 
-Openings can have costs, or weights, to transverse, and the cost of a path is the sum of the weights along the path. In the case below the path cost is 4.7. Walls can be asymmetric, so the cost through a wall is different in one direction than another - this means that the cost of a path is directional. The cost from S to E may not be the same as E to S, although the path distance is symmetric between start and finish. In a valid maze, a wall is either open or closed from both sides.
+Walls can have costs, or weights, to transverse, and the cost of a path is the sum of the weights along the path. In the case below the path cost is 4.7. Walls can be asymmetric, so the cost through a wall is different in one direction than another - this means that the cost of a path is directional. The cost from S to E may not be the same as E to S, although the path distance is symmetric between start and finish. In a valid maze, a wall is either open or closed from both sides.
 
 ![path image](images/path.png)
 
@@ -49,7 +49,7 @@ A bridge is a special path in a maze, a sequence of two identical moves in that 
 
 ## Maze File Format
 
-Mazes are defined in text files according to the format we describe next, which we will refer to as the *simple maze data file format*.  The maze.rb we have provided includes a parser for files in this format.  In the last part of the project, you will have to write a parser for files in a different format.
+Mazes are defined in text files according to the format we describe next, which we will refer to as the *simple maze data file format*.  The maze.rb we have provided includes a parser for files in this format.
 
 The maze data files have a relatively simple structure.  Here's an example (the ellipsis ... is not part of the file, but indicates the continuation of the cell specifications.)
 
@@ -121,7 +121,7 @@ In the simple format, there is one path specification per line. Each path specif
 path path1 0 2 uurrddll
 ```
 
-The path <span style="font-family:Consolas; font-size:1.2em;">"path1"</span> starts at coordinates (0,2) and then proceeds up twice, right twice, down twice, and left twice, to reach its ending point (which happens to be the same as the starting point).  A valid path description starts inside the maze, and doesn't not lead outside or through closed walls.
+The path <span style="font-family:Consolas; font-size:1.2em;">"path1"</span> starts at coordinates (0,2) and then proceeds up twice, right twice, down twice, and left twice, to reach its ending point (which happens to be the same as the starting point).  A valid path description starts inside the maze, and doesn't not lead outside or through closed walls. 
 
 The maze.rb file we have given you will parse in the data in this format. The parser is invoked by the mode <span style="font-family:Consolas; font-size:1.2em;">print</span>, which prints its results so you can see how it has parsed the different parts of the maze. (You'll change the implementation of print before finishing the project, as described below.)
 
@@ -203,7 +203,7 @@ the cost of the first move in the path will be 958.1 (the weight for the "d" ope
 
 Also, recall that weights can be negative.
 
-Once you have found which paths are valid and calculated the cost of each valid path, you need to return the cost and name of each valid path, in order of cost from lowest to highest.  If there are no valid paths, simply return "none".  If there are valid paths, you should return an array of strings, each being in the following format:
+Once you have found which paths are valid and calculated the cost of each valid path, you need to return the cost and name of each valid path, in order of cost from lowest to highest.  If there are no paths, simply return "none".  If there are valid paths, you should return an array of strings, each being in the following format:
 
 ```text
 <path total cost> <path name>
