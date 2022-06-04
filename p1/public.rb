@@ -40,8 +40,8 @@ class PublicTests < Minitest::Test
     	$OUTPUT_MAZE4 = File.read("outputs/public_print_maze4.out")
         $OUTPUT_MAZE5 = File.read("outputs/public_print_maze5.out")
 
-        assert_equal($OUTPUT_MAZE4, main("print", $MAZE4))
-        assert_equal($OUTPUT_MAZE5, main("print", $MAZE5))
+        assert_equal($OUTPUT_MAZE4, main("print", $MAZE4).gsub(/\s+\n/,"\n").strip)
+        assert_equal($OUTPUT_MAZE5, main("print", $MAZE5).gsub(/\s+\n/,"\n").strip)
     end
 
     def test_public_solve
@@ -89,9 +89,9 @@ class PublicTests < Minitest::Test
     	$OUTPUT_MAZE2 = File.read("outputs/public_print_maze2.out")
     	$OUTPUT_MAZE3 = File.read("outputs/public_print_maze3.out")
 
-        assert_equal($OUTPUT_MAZE1, main("print", $MAZE1))
-        assert_equal($OUTPUT_MAZE2, main("print", $MAZE2))
-        assert_equal($OUTPUT_MAZE3, main("print", $MAZE3))
+        assert_equal($OUTPUT_MAZE1, main("print", $MAZE1).gsub(/\s+\n/,"\n").strip)
+        assert_equal($OUTPUT_MAZE2, main("print", $MAZE2).gsub(/\s+\n/,"\n").strip)
+        assert_equal($OUTPUT_MAZE3, main("print", $MAZE3).gsub(/\s+\n/,"\n").strip)
     end
 
     def test_public_solve2
