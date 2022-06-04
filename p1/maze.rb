@@ -8,10 +8,6 @@
 # FUNCTION DECLARATIONS
 #-----------------------------------------------------------
 
-def parse(file)
-  puts "Not yet implemented"    
-end
-
 # write your own functions here
 
 #-----------------------------------------------------------
@@ -54,8 +50,6 @@ def main(command, fileName)
   case command
   when "open"
     fail "unimplemented"
-  when "parse"
-    parse(maze_file)
   when "print"
     read_and_print_simple_file(maze_file)
   when "distance"
