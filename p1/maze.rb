@@ -12,6 +12,8 @@ def parse(file)
   puts "Not yet implemented"    
 end
 
+# write your own functions here
+
 #-----------------------------------------------------------
 # the following is a parser that reads in a simpler version
 # of the maze files.  Use it to get started writing the rest
@@ -50,12 +52,23 @@ def main(command, fileName)
 
   # perform command
   case command
+  when "open"
+    fail "unimplemented"
   when "parse"
     parse(maze_file)
   when "print"
     read_and_print_simple_file(maze_file)
+  when "distance"
+    fail "unimplemented"
+  when "paths"
+    fail "unimplemented"
+  when "solve"
+    fail "unimplemented"
+  when "bridge"
+    fail "unimplemented"
+  when "sortcells"
+    fail "unimplemented"
   else
     fail "Invalid command"
   end
 end
-
