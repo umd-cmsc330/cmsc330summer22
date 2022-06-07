@@ -172,74 +172,6 @@ let test_int_max_inc =
     int_max t2 >= int_max t1
   )
 
-(* Testing tree map *)
-
-let test_map_contains_after_inserted = 
-  Test.make
-  ~name:"test_map_contains_after_inserted"
-  ~count:1000
-  (pair small_int string)
-  (fun (x, y) ->
-    let t0 = empty_tree_map in
-    let t1 = map_put x y t0 in
-    map_contains x t1 = true
-  )
-
-let test_map_put_bigger_goes_right = 
-  Test.make
-  ~name:"test_map_put_bigger_goes_right"
-  ~count:1000
-  (quad small_int string string string)
-  (fun (x, y, z, w) ->
-    let bigger = x + 1 in
-    let even_bigger = bigger + 1 in
-    let t0 = empty_tree_map in
-    let t1 = map_put x y t0 in
-    let t2 = map_put bigger z t1 in
-    let t3 = map_put even_bigger w t2 in
-    match t3 with
-    | MapLeaf -> false
-    | MapNode ((_, _), None, _, _, _) -> false
-    | MapNode ((a, _), Some (c, _), _, _, r) ->
-        match r with
-        | MapNode ((e, _), None, _, _, _) when e > a && e > c -> true
-    | _ -> false
-  )
-
-let test_map_put_smaller_goes_left = 
-  Test.make
-  ~name:"test_map_put_smaller_goes_left"
-  ~count:1000
-  (quad small_int string string string)
-  (fun (x, y, z, w) ->
-    let bigger = x + 1 in
-    let smaller = x - 1 in
-    let t0 = empty_tree_map in
-    let t1 = map_put x y t0 in
-    let t2 = map_put bigger z t1 in
-    let t3 = map_put smaller w t2 in
-    match t3 with
-    | MapLeaf -> false
-    | MapNode ((_, _), None, _, _, _) -> false
-    | MapNode ((a, _), Some (c, _), l, _, _) ->
-        match l with
-        | MapNode ((e, _), None, _, _, _) when e < a && e < c -> true
-    | _ -> false
-  )
-
-(* Testing Scopes *)
-let test_add_var_single_scope = 
-  Test.make
-  ~name:"test_add_var_single_scope"
-  ~count:1000
-  (pair small_string small_int)
-  (fun (x, y) ->
-    let et = empty_table in
-    let t = push_scope et in
-    let t2 = add_var x y t in
-    lookup x t2 = y
-  )
-
 let suite =
   "public" >::: [
     QCheck_runner.to_ounit2_test test_count_occ;
@@ -255,10 +187,6 @@ let suite =
     QCheck_runner.to_ounit2_test test_int_mem_after_inserting; 
     QCheck_runner.to_ounit2_test test_int_size_inc; 
     QCheck_runner.to_ounit2_test test_int_max_inc; 
-    QCheck_runner.to_ounit2_test test_map_contains_after_inserted; 
-    QCheck_runner.to_ounit2_test test_map_put_bigger_goes_right; 
-    QCheck_runner.to_ounit2_test test_map_put_smaller_goes_left; 
-    QCheck_runner.to_ounit2_test test_add_var_single_scope
   ]
 
 let _ = run_test_tt_main suite
