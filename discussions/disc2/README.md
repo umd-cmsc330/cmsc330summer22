@@ -73,10 +73,10 @@ sum [] = 0
 
 ## Part 2: Quiz #1 In Discussion (Optional)
 Choose one:
-1. Have 20 minutes in class to do quiz then do p1a part 1
-2. Do p1a part 1 and give 20 minute back to students
+1. Have 20 minutes in class to do quiz then do p2a part 1
+2. Do p2a part 1 and give 20 minute back to students
 
-## Part 3: Project 1a Part 1
+## Part 3: Project 2a Part 1
 Implement the following functions that do not require recursion. Accordingly, these functions are defined without the `rec` keyword, but **you MAY add the `rec` keyword to any of the following functions or write a recursive helper function**. Just remember that if you write a helper function, it must be defined in the file before it is called.
 
 #### `rev_tup tup`
