@@ -3,7 +3,7 @@
 # Discussion 2: Intro to OCaml
 
 
-Due: June 6, 2021 at 11:59 PM
+Due: June 7, 2022 at 11:59 PM
 
 Points: 100 public
 
