@@ -1,0 +1,9 @@
+[course]
+id = 399941
+name = "CMSC330"
+term = "Summer 2022"
+
+[assignment]
+id = 2093816
+name = "Discussion 2"
+files = [ "src/disc2.ml"]
