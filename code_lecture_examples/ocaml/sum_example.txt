@@ -1,0 +1,28 @@
+let rec sum lst = match lst with 
+[] -> 0
+|h::t -> h + (sum t);;
+
+sum [1;2;3];;
+match [1;2;3] with h::t
+  h = 1
+  t = [2;3]
+  return 1 + (sum [2;3])
+
+sum [2;3]
+match [2;3] with h::t
+  h = 2
+  t = [3]
+  h + (sum [3])
+
+sum [3]
+,atch [3] with h::t
+  h = 3
+  t = []
+  h + sum []
+
+sum []
+match [] with = [] -> 0
+
+1 + (2 + (3 + 0))
+
+
