@@ -93,7 +93,7 @@ check_androids list_of_androids [] = ["A2"]
 ```
 
 #### `deploy andr target`
-- **Type:** `android list -> string -> android list`
+- **Type:** `android -> string -> android list`
 - **Description:** Given an android and a target location, return the android with their locations changed to `target`.  Rogue androids can not have their locations changed, so if the android is rogue return `failwith "invalid deploy"`
 - **Examples:**
 ```ocaml
