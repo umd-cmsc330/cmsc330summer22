@@ -15,7 +15,7 @@ match [2;3] with h::t
   h + (sum [3])
 
 sum [3]
-,atch [3] with h::t
+match [3] with h::t
   h = 3
   t = []
   h + sum []

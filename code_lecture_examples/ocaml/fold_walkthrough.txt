@@ -1,0 +1,34 @@
+let concat a h = h^a;;
+
+let rec fold f a l = match l with 
+[] -> a
+|h::t -> fold f (f a h) t;;
+
+fold concat "" ["a";"b";"c"]
+  f = concat
+  a = ""
+  l = ["a";"b";"c"]
+  l is not []
+  fold concat (concat "" "a") ["b";"c"]
+  fold concat "a" ["b";"c"]
+
+fold concat "a" ["b";"c"];;
+  f = concat
+  a = "a"
+  l = ["b";"c"]
+  fold concat (concat "a" "b") ["c"]
+  fold concat "ab" ["c"]
+
+fold concat "a" ["b";"c"];;
+  f = concat
+  a = "ab"
+  l = ["c"]
+  fold concat (concat "ab" "c") []
+  fold concat "abc" []
+
+fold concat "abc" [] 
+  f = concat
+  a = "abc"
+  l = []
+  l is [] so return a
+  return "abc"

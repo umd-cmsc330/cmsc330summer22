@@ -1,0 +1,40 @@
+let rec sum n = 
+if n = 0 then 0 else 
+n + sum (n-1);;
+
+Here is the stack frames at
+the deepest part of the recursion
+sum 0   <--- top of stack
+0
+______
+sum 1
+1 + sum 0
+______
+sum 2
+2 + sum 1
+______
+sum 3     <--- Inital function call
+3 + sum 2
+
+Notice that here, I need each frame to
+exist because they hold data that I will
+use when computing the final value
+
+Opposed to this version:
+let rec sum n a = 
+if n = 0 then a else
+sum (n-1) (n + a);;
+
+sum 3;;
+sum 0 6
+_______
+sum 2 3
+sum 1 5
+_______
+sum 3 0
+sum 2 3
+
+Notice here there is no reason for 
+me to keep previous stack frames. I
+can just return 6 at the last stack 
+frame.
