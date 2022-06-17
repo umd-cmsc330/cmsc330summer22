@@ -1,0 +1,33 @@
+abbaba
+s0 -a-> S1 -b-> S2 -b-> rejected
+
+abaabab
+
+S0 -a-> S1 -b->S2 -a->s3-a->s1-b->s2-a->s1-b->s2
+
+abaabab
+S0 -a-> S1 -b-> S2 -a-> S0
+                S2 -e-> s0
+
+q * symbol * q
+
+Alphabet = {a,b}
+Q = {S0,S1,S2,S3}
+q0 = S0
+F = {S0,S2,S3}
+delta: {(S0,a)-> S1,(S1,b)->S2,(s2,a)->S3,(s3,b)->S2,(S3,a)->S1}
+
+String = ba
+curr = S2
+rejected
+
+String ""
+curr = S2
+if curr \in F
+
+b
+S0 -a-> S1 -b-> S2 -b-> S3
+S0 -a-> S0 -b-> S0 -b-> S0
+
+
+

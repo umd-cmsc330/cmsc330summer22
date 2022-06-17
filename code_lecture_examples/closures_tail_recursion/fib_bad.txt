@@ -1,0 +1,24 @@
+let rec fib n = 
+if n < 2 then 1 else (fib (n-1)) - (fib (n-2));;
+
+fib 3;;
+Stack:
+
+fib n:1
+1
+---------------
+fib n:2
+a = fib (n-1)
+---------------
+fib n:3
+a = fib (n-1)
+b = fib (n-2)
+a+b
+_______________
+BOTTOM OF STACK
+---------------
+
+Notice I need other stack frames to return
+before I can calculate final value. Means I
+will keep on adding stack frames. Could run 
+out of stack space
