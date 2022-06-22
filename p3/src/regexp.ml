@@ -1,5 +1,5 @@
 open List
-open Nfa
+open P3.Nfa
 
 (*********)
 (* Types *)
