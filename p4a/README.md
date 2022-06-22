@@ -48,13 +48,14 @@ This way, you can work on the parser even if your lexer is not complete yet.
 
 Your parser will take as input a list of tokens; this list is produced by the *lexer* (also called a *scanner*) as a result of processing the input string. Lexing is readily implemented by use of regular expressions, as demonstrated in **[lecture][lecture] slides 3-5**. Information about OCaml's regular expressions library can be found in the [`Str` module documentation][str doc]. You aren't required to use it, but you may find it helpful.
 
-Your lexer must be written in [lexer.ml](./src/lexer.ml). You will need to implement the following function: 
+Your lexer must be written in [lexer.ml](./src/lexer.ml). You will need to implement the following function:
 
-#### `tokenize`
+### `tokenize`
 
-- **Type:** `string -> token list` 
+- **Type:** `string -> token list`
 - **Description:** Converts MicroCaml syntax (given as a string) to a corresponding token list.
 - **Examples:**
+
   ```ocaml
   tokenize "1 + 2" = [Tok_Int 1; Tok_Add; Tok_Int 2]
 
@@ -71,6 +72,7 @@ Your lexer must be written in [lexer.ml](./src/lexer.ml). You will need to imple
 The `token` type is defined in [tokenTypes.ml](./src/tokenTypes.ml).
 
 Notes:
+
 - The lexer input is case sensitive.
 - Tokens can be separated by arbitrary amounts of whitespace, which your lexer should discard. Spaces, tabs ('\t') and newlines ('\n') are all considered whitespace.
 - When excaping characters with `\` within Ocaml strings/regexp you must use `\\` to escape from the string and regexp.
@@ -136,20 +138,23 @@ Token Name | Lexical Representation
 `Tok_DoubleSemi` | `;;`
 
 Notes:
-- Your lexing code will feed the tokens into your parser, so a broken lexer can cause you to fail tests related to parsing. 
-- In grammars given below, the syntax matching tokens (lexical representation) is used instead of the token name. For example, the grammars below will use `(` instead of `Tok_LParen`. 
+
+- Your lexing code will feed the tokens into your parser, so a broken lexer can cause you to fail tests related to parsing.
+- In grammars given below, the syntax matching tokens (lexical representation) is used instead of the token name. For example, the grammars below will use `(` instead of `Tok_LParen`.
 
 ## Part 2: Parsing MicroCaml Expressions
 
-In this part, you will implement `parse_expr`, which takes a stream of tokens and outputs as AST for the input expression of type `expr`. Put all of your parser code in [parser.ml](./src/parser.ml) in accordance with the signature found in [parser.mli](./src/parser.mli). 
+In this part, you will implement `parse_expr`, which takes a stream of tokens and outputs as AST for the input expression of type `expr`. Put all of your parser code in [parser.ml](./src/parser.ml) in accordance with the signature found in [parser.mli](./src/parser.mli).
 
 We present a quick overview of `parse_expr` first, then the definition of AST types it should return, and finally the grammar it should parse.
 
 ### `parse_expr`
+
 - **Type:** `token list -> token list * expr`
 - **Description:** Takes a list of tokens and returns an AST representing the MicroCaml expression corresponding to the given tokens, along with any tokens left in the token list.
 - **Exceptions:** Raise `InvalidInputException` if the input fails to parse i.e does not match the MicroCaml expression grammar.
 - **Examples** (more below):
+
   ```ocaml
   parse_expr [Tok_Int(1); Tok_Add; Tok_Int(2)] =  ([], Binop (Add, Value (Int 1), Value (Int 2)))
 
@@ -229,11 +234,13 @@ To illustrate `parse_expr` in action, we show several examples of input and thei
 ### Example 1: Basic math
 
 **Input:**
+
 ```ocaml
 (1 + 2 + 3) / 3
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Binop (Div,
   Binop (Add, Value (Int 1), Binop (Add, Value (Int 2), Value (Int 3))),
@@ -245,11 +252,13 @@ In other words, if we run `parse_expr (tokenize "(1 + 2 + 3) / 3")` it will retu
 ### Example 2: `let` expressions
 
 **Input:**
+
 ```ocaml
 let x = 2 * 3 / 5 + 4 in x - 5
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Let ("x", false,
   Binop (Add,
@@ -261,11 +270,13 @@ Let ("x", false,
 ### Example 3: `if then ... else ...`
 
 **Input:**
+
 ```ocaml
 let x = 3 in if not true then x > 3 else x < 3
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Let ("x", false, Value (Int 3),
   If (Not (Value (Bool true)), Binop (Greater, ID "x", Value (Int 3)),
@@ -275,11 +286,13 @@ Let ("x", false, Value (Int 3),
 ### Example 4: Anonymous functions
 
 **Input:**
+
 ```ocaml
 let rec f = fun x -> x ^ 1 in f 1
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Let ("f", true, Fun ("x", Binop (Concat, ID "x", Value (Int 1))),
   FunctionCall (ID "f", Value (Int 1)))
@@ -291,14 +304,16 @@ Keep in mind that the parser is not responsible for finding type errors. This is
 
 Notice how the AST for `let` expressions uses a `bool` flag to determine whether a function is recursive or not. When a recursive anonymous function `let rec f = fun x -> ... in ...` is defined, `f` will bind to `fun x -> ...` when evaluating the function. The interpreter will be responsible for handling this. In Project 4b, you will also handle the cases where `rec` is used without anonymous functions as well as attempting recursion without using `rec`.
 
-For now, let's create an infinite recursive loop for fun. 
+For now, let's create an infinite recursive loop for fun.
 
 **Input:**
+
 ```ocaml
 let rec f = fun x -> f (x*x) in f 2
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Let ("f", true,
   Fun ("x", FunctionCall (ID "f", Binop (Mult, ID "x", ID "x"))),
@@ -310,11 +325,13 @@ Let ("f", true,
 We will **ONLY** be currying to create multivariable functions as well as passing multiple arguments to them. Here is an example:
 
 **Input:**
+
 ```ocaml
 let f = fun x -> fun y -> x + y in (f 1) 2
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Let ("f", false, 
   Fun ("x", Fun ("y", Binop (Add, ID "x", ID "y"))),
@@ -327,11 +344,13 @@ In this part, you will implement `parse_mutop` (putting your code in [parser.ml]
 
 We present a quick overview of the function first, then the definition of AST types it should return, and finally the grammar it should parse.
 
-#### `parse_mutop`
+### `parse_mutop`
+
 - **Type:** `token list -> token list * mutop`
 - **Description:** Takes a list of tokens and returns an AST representing the MicroCaml expression at the `mutop` level corresponding to the given tokens, along with any tokens left in the token list.
 - **Exceptions:** Raise `InvalidInputException` if the input fails to parse i.e does not match the MicroCaml definition grammar.
 - **Examples:**
+
   ```ocaml
   parse_mutop [Tok_Def; Tok_ID("x"); Tok_Equal; Tok_Bool(true); Tok_DoubleSemi] = ([], Def ("x", Value (Bool true)))
 
@@ -366,14 +385,16 @@ For this part, we created a new keyword `def` to refer to top-level MicroCaml ex
 
 Here are some example mutop directives. Note that `parse_mutop` should return a tuple of (updated token list, parsed AST), but in these examples we omit the updated token list since it should always just be an empty list.
 
-### Example 1: Global definition 
+### Example 1: Global definition
 
 **Input:**
+
 ```ocaml
 def x = let a = 3 in if a <> 3 then 0 else 1;;
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Def ("x",
   Let ("a", false, Value (Int 3),
@@ -383,11 +404,13 @@ Def ("x",
 ### Example 2: Implicit recursion on `f`
 
 **Input:**
+
 ```ocaml
 def f = fun x -> if x > 0 then f (x-1) else "done";;
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Def ("f",
   Fun ("x",
@@ -399,11 +422,13 @@ Def ("f",
 ### Example 3: Expression
 
 **Input:**
+
 ```ocaml
 (fun x -> "(" ^ x ^ ")") "parenthesis";;
 ```
 
 **Output (after lexing and parsing):**
+
 ```ocaml
 Expr (
   FunctionCall (Fun ("x",
@@ -417,20 +442,24 @@ Expr (
 To help you implement both parsers, we have provided some helper functions in the `parser.ml` file. You are not required to use these, but they are recommended.
 
 ### `match_token`
+
 - **Type:** `token list -> token -> token list`
 - **Description:** Takes the list of tokens and a single token as arguments, and returns a new token list with the first token removed IF the first token matches the second argument.
 - **Exceptions:** Raise `InvalidInputException` if the first token does not match the second argument to the function.
 
 ### `match_many`
+
 - **Type:** `token list -> token list -> token list`
 - **Description:** An extension of `match_token` that matches a sequence of tokens given as the second token list and returns a new token list with that matches each token in the order in which they appear in the sequence. For example, `match_many toks [Tok_Let]` is equivalent to `match_token toks Tok_Let`.
 - **Exceptions:** Raise `InvalidInputException` if the tokens do not match.
 
 ### `lookahead`
+
 - **Type:** `token list -> token option`
 - **Description:** Returns the top token in the list of tokens as an option, returning `None` if the token list is empty. **In constructing your parser, the lack of lookahead token (None) is fine for the epsilon case.**
 
 ### `lookahead_many`
+
 - **Type:** `token list -> int -> token option`
 - **Description:** An extension of `lookahead` that returns token at the nth index in the list of tokens as an option, returning `None` if the token list is empty at the given index or the index is negative. For example, `lookahead_many toks 0` is equivalent to `lookahead toks`.
 
