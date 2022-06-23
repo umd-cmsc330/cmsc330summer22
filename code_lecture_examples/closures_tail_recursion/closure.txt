@@ -1,0 +1,27 @@
+let f x y = x + y;;
+let g = f 3;;
+g = closure
+g = ((fun x -> fun y -> x + y),[x:3;])
+
+g 5
+[x:3](fun x -> fun y -> x + y) 5
+(fun y -> 3 + y) 5
+3 + 5
+8
+
+
+let z = 4;;
+z + 5 -> 9;;
+let z = 6;;
+z + 5 -> 11;;
+
+let z = 4;;
+let g = f z;;
+(*
+g = ((fun x -> fun y -> x + y),[x:4])
+*)
+let z = 6;;
+g 4;;
+[x:4](fun x -> fun y -> x + y) 4
+(fun y -> 4 + y) 4
+4 + 4 -> 8

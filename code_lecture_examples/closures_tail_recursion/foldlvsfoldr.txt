@@ -1,0 +1,9 @@
+let rec fold f a l = match l with
+[]-> a
+|h::t -> fold f (f a h) t;;
+(* last thing here is the recursive call *)
+
+let rec foldr f l a = match l with
+[]-> a
+|h::t -> f h (foldr f t a)
+(* last thing here is f h ..... *)

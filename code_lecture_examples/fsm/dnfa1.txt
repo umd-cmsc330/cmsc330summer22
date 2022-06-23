@@ -1,0 +1,49 @@
+R -> {}
+  |empty string {""}
+  |sigma any symbol in the alphabet
+  |R1R2
+  |R1|R2
+  |R1*
+
+L1 = {"a"}
+
+L1 = 
+delta: {(S0,a) -> S1}
+F = {S1}
+q0 = S0
+Q = {S0,S1}
+Alphabet = {a}
+
+L2 = 
+delta: {(S0,b) -> S1}
+F = {S1}
+q0 = S0
+Q = {S0,S1}
+Alphabet = {b}
+
+concat
+Alphabet L1.alphabet \union L2.alphabet
+alphabet = {a,b}
+Q L1.Q + L2.Q
+Q = {S0l1,S1l1,S0l2,S1l2}
+q0 L1.q0
+q0 = S0l1
+F L2.F
+F = {S1l2} 
+delta L1.delta \union L2.delta + (L1.F \times {e} -> L2.S0)
+delta: {(S0l1,a)->S1l1,(S0l2,b) -> S1l2, (S1l1,e)->S0l2}
+
+union
+Alphabet L1.alphabet union l2.alphabet
+Q = L1.Q + L2.Q + {s} + {f}
+q0 = s
+F = {f}
+delta: L1.delta + L2.delta, + {(S,e) -> L1.q0,(S,e)->L2.q0, (L1.F x {e}) -> f, (L2.F x {e} -> f
+
+
+Kleene Cosure
+Alphabet L1.alphabet
+Q L1.Q + {s} = {f}
+q0 = s
+F = {f}
+delta: L1.delta + {(S,e)->L1.q0,(S,e)->F,(F,e)->S,L1.F \times {e} -> F}
