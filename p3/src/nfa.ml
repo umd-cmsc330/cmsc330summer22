@@ -1,5 +1,5 @@
 open List
-open P3.Sets
+open Sets
 
 (*********)
 (* Types *)
