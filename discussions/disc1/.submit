@@ -1,9 +1,0 @@
-[course]
-id = 399941
-name = "CMSC330"
-term = "Summer 2022"
-
-[assignment]
-id = 2088855
-name = "Discussion 1"
-files = [ "src/warmup.rb" ]

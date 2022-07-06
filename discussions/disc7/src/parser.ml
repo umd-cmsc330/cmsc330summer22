@@ -27,7 +27,7 @@ let lookahead toks = match toks with
 (* Parses a token list. *)
 let rec parser (toks : token list) : expr =
   let (t, exp) = parse_S toks in
-  if t <> [Tok_EOF] then
+  if t <> [Tok_EOF] then 
     raise (Failure "did not reach EOF")
   else
     exp

@@ -26,8 +26,61 @@ let fresh =
 (* Part 3: Regular Expressions *)
 (*******************************)
 
-let regexp_to_nfa (regexp : regexp_t) : (int, char) nfa_t =
-  failwith "unimplemented"
+let rec regexp_to_nfa (regexp : regexp_t) : (int, char) nfa_t =
+  match regexp with
+  |Char c ->
+    let s0 = fresh() in
+    let s1 = fresh() in
+    let nfa = {
+      sigma = [c];
+      qs = [s0;s1];
+      q0 = s0;
+      fs = [s1];
+      delta = [(s0,Some c,s1)]
+    } in nfa
+  |Empty_String -> 
+    let s0 = fresh() in
+    let nfa = {
+      simga = [];
+      qs = [s0];
+      q0 = s0;
+      fs = [s0];
+      delta = []
+    } in nfa
+  |Concat (a,b) ->
+    let qa = regexp_to_nfa a in 
+    let qb = regexp_to_nfa b in 
+    let nfa = {
+      sigma = Sets.union qa.sigma qb.sigma;
+      qs = Sets.union qa.qs qb.qs;
+      q0 = qa.q0;
+      fs = qb.fs;
+      delta = Sets.union (Sets.union qa.delta qb.delta) [(List.hd qa.fs,None,qb.q0)]
+    } in nfa
+  |Union (a,b) ->
+    let qa = regexp_to_nfa a in 
+    let qb = regexp_to_nfa b in
+    let s0 = fresh() in
+    let s1 = fresh() in
+    let nfa = {
+      sigma = Sets.union qa.sigma qb.sigma;
+      qs = Sets.union (Sets.union qa.qs qb.qs) [s0;s1];
+      q0 = s0;
+      fs = [s1];
+      delta = Sets.union (Sets.union qa.delta qb.delta) 
+      ([(s0,None,qa.q0);(s0,None,qb.q0);(List.hd qa.fs,None,s1);(List.hd qb.fs,None,s1)])
+    } in nfa
+  |Star a ->
+    let qa = regexp_to_nfa a in
+    let s0 = fresh() in
+    let s1 = fresh() in
+    let nfa = {
+      sigma = qa.sigma;
+      qs = Sets.union qa.qs [s0;s1];
+      q0 = s0;
+      fs = [s1];
+      delta = Sets.union qa.delta [(List.hd qa.fs,None,s1);(s0,None,qa.q0);(s0,None,s1);(s1,None,s0)]
+    } in nfa
 
 (*****************************************************************)
 (* Below this point is parser code that YOU DO NOT NEED TO TOUCH *)
